@@ -26,20 +26,12 @@ router.get("/trackName", (req, res) => {
   const queryname = req.query.name
   
   if (queryname) {
-    console.log("query", queryname);
     res.cookie("userName", queryname)
-    // res.render("myName")
-    res.redirect("myName", {
-      name: queryname
-    })
-    
+    res.redirect("myName")
   } else {
     const cookiename = req.cookies.userName
-    console.log("cookie", cookiename);
     if (cookiename) {
-      res.redirect("myName", {
-        name: cookiename
-      })
+      res.redirect("myName")
     } else {
       res.render("trackName")
     }

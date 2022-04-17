@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUM</title>
+  <script>
+    window.onload = () => {
+      document.querySelector("button").addEventListener("click", () => {
+        const number = document.querySelector("input").value
+        postHandel(number)
+      })
+    }
+    function postHandel(number) {
+      var request = new XMLHttpRequest()
+      request.onreadystatechange = function () {
+        const result = document.getElementById("result")
+        if (request.readyState === 4) {
+          if ( request.status === 200 ){
+            const data = JSON.parse(request.responseText)
+            result.innerHTML = data.numString + '<br> total= ' + data.numcount
+          } else {
+            const data = JSON.parse(request.responseText)
+            result.innerHTML = data.message
+          }
+        }
+      }
+      request.open("POST", `http://localhost:3000/getData?number=${number}`)
+      request.send()
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Let's count</h1>
+  <form>
+    <label for="">Enter a Number</label>
+    <input type="text" name="">
+    <br>
+    <button type="button">Submit</button>
+  </form>
+
+  <h2 id="result"></h2>
+
+</body>
+
+</html>
