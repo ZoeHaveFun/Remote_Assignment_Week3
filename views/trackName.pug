@@ -1,0 +1,7 @@
+extends layout.pug 
+
+block content
+  form(action="/trackName", method="post") 
+    label(for="") Pleas enter your Name 
+      input(type="text", name="userName")
+    button(type="submite") Submite
