@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
   const {
     number
   } = req.query
-  const regex = /\d/;
+  const regex = /^[1-9]\d*$/;
   if (number === undefined) {
     res.render("getData", {
       message: "Lack of Parameter"
